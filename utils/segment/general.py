@@ -144,7 +144,7 @@ def masks_iou(mask1, mask2, eps=1e-7):
     return intersection / (union + eps)
 
 
-def masks2segments(masks, strategy='largest'):
+def masks2segments(masks, strategy='concat'):
     # Convert masks(n,160,160) into segments(n,xy)
     segments = []
     for x in masks.int().cpu().numpy().astype('uint8'):
