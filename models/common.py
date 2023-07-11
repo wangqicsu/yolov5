@@ -841,10 +841,10 @@ class Proto(nn.Module):
         self.cv1 = Conv(c1, c_, k=3)
         self.upsample = nn.Upsample(scale_factor=2, mode='nearest')
         self.cv2 = Conv(c_, c_, k=3)
-        self.cv3 = Conv(c_, c2)
-
+        self.cv3 = Conv(64, c2)
+        self.cv4 = Conv(128, 64, k=3)
     def forward(self, x):
-        return self.cv3(self.cv2(self.upsample(self.cv1(x))))
+        return self.cv3(self.cv4(self.cv2(self.upsample(self.cv1(x)))))
 
 
 class Classify(nn.Module):
